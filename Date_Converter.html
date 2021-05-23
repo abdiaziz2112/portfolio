@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style type="text/css">
+
+
+	.btn{
+		text-decoration: none;
+    display: inline-block;
+    background-color: rgb(255,138,32);
+    color: white;
+    padding: 1.3rem 5rem;
+    font-weight: 600;
+    margin-top: 4rem;
+    border-radius: 5rem;
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.3);
+
+}
+.btn:hover{
+    background-color: #fab6b6;
+    color: black;
+    transition: all 500ms ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+.main-container{
+    border: 1px solid;
+    width: 300px;
+    margin: 0px auto;
+    background-color: green;
+    color: white;
+}
+.header-container{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#switch{
+    background-color: #00befe;
+    color: white;
+    width: 50px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 40px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+#switchImage{
+    width: 24px;
+    height: 16px;
+    background-color: #00befe;
+}
+.select-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 4px;
+}
+#convert{
+    background-color: #00befe;
+    color: white;
+    width: 160px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 75px;
+    font-size: 15px;
+    font-weight: bold;
+}
+#days{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#month{
+    font-size: 20px;
+    margin-right: 10px;
+}
+#year{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.converted-date{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+</style>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="date.css">
+    <script>
+    //Hijri Infromation
+    var hijriYears = [1432, 1433, 1434, 1435, 1436, 1437, 1438, 1439, 1440, 1441, 1442, 1443]
+    var hijriMonths = [
+    'Muharram', 'Safar', 'Rabi ul Awal', 'Rabi Al-Akhar', 'Jumadu Al-Awal', 
+    'Jumadu Al-Akhar', 'Rajab', 'Shaban', 'Ramadan', 'Shawwal', 'Dhul Qadah', 'Dhul Hijjah'
+    ]
+    
+    //Miilaadi Information
+    var miladiYears = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+    var miladiMonths = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+    ]
+    
+    //Function That Displays current hijri and miladi Dates
+    setTimeout(displayCurrentDate, 300)
+    function displayCurrentDate(){
+    currentDate = new Date()
+    today = currentDate.getDay()
+    miladiDate = currentDate.getDate()
+    month = currentDate.getMonth()
+    year = currentDate.getFullYear()
+    document.getElementById('year').selectedIndex = miladiYears.indexOf(2020)
+    document.getElementById('days').selectedIndex = miladiDate - 1
+    document.getElementById('month').selectedIndex = month
+    
+    hijriDate = 0
+    hijriMonth = 0
+    hijriYear = 0
+    if(miladiMonths[month] == 'January' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 25){
+    hijriDate = parseInt(miladiDate) + 5
+    hijriMonth = 'Jumadu Awal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 5
+    hijriDate = totalDate - 30
+    hijriMonth = 'Jumadu Akhir'
+    }
+    }
+    else if(miladiMonths[month] == 'February' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 24){
+    hijriDate = parseInt(miladiDate) + 6
+    hijriMonth = 'Jumadu Akhir'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 6
+    hijriDate = totalDate - 30
+    hijriMonth = 'Rajab'
+    }
+    }
+    else if(miladiMonths[month] == 'March' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 24){
+    hijriDate = parseInt(miladiDate) + 5
+    hijriMonth = 'Rajab'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 5
+    hijriDate = totalDate - 29
+    hijriMonth = 'Shaban'
+    }
+    }
+    else if(miladiMonths[month] == 'April' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 23){
+    hijriDate = parseInt(miladiDate) + 7
+    hijriMonth = 'Shaban'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 7
+    hijriDate = totalDate - 30
+    hijriMonth = 'Ramadaan'
+    }
+    }
+    else if(miladiMonths[month] == 'May' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 23){
+    hijriDate = parseInt(miladiDate) + 7
+    hijriMonth = 'Ramadaan'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 7
+    hijriDate = totalDate - 30
+    hijriMonth = 'Shawal'
+    }
+    }
+    else if(miladiMonths[month] == 'June' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 21){
+    hijriDate = parseInt(miladiDate) + 8
+    hijriMonth = 'Shawal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 8
+    hijriDate = totalDate - 29
+    hijriMonth = 'Dhul Qidah'
+    }
+    }
+    else if(miladiMonths[month] == 'July' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 21){
+    hijriDate = parseInt(miladiDate) + 9
+    hijriMonth = 'Dhul Qidah'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 9
+    hijriDate = totalDate - 30
+    hijriMonth = 'Dhul Hijjah'
+    }
+    }
+    else if(miladiMonths[month] == 'August' & year == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 19){
+    hijriDate = parseInt(miladiDate) + 10
+    hijriMonth = 'Dhul Hijjah'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 10
+    hijriDate = totalDate - 29
+    hijriMonth = 'Muharram'
+    hijriYear = '1442h'
+    }
+    }
+    else if(miladiMonths[month] == 'September' & year == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 17){
+    hijriDate = parseInt(miladiDate) + 12
+    hijriMonth = 'Muharram'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 12
+    hijriDate = totalDate - 29
+    hijriMonth = 'Safar'
+    }
+    }
+    else if(miladiMonths[month] == 'October' & year == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 17){
+    hijriDate = parseInt(miladiDate) + 13
+    hijriMonth = 'Safar'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 13
+    hijriDate = totalDate - 30
+    hijriMonth = 'Rabi ul Awal'
+    }
+    }
+    else if(miladiMonths[month] == 'November' & year == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 14){
+    hijriDate = parseInt(miladiDate) + 15
+    hijriMonth = 'Rabi ul Awal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 15
+    hijriDate = totalDate - 29
+    hijriMonth = 'Rabi ul Akhar'
+    }
+    }
+    else if(miladiMonths[month] == 'December' & year == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 17){
+    hijriDate = parseInt(miladiDate) + 15
+    hijriMonth = 'Rabi al Akhar'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 15
+    hijriDate = totalDate - 30
+    hijriMonth = 'Jumadu Awal'
+    }
+    }
+    document.getElementById('maalinta').innerText = hijriDate
+    document.getElementById('bisha').innerText = hijriMonth
+    document.getElementById('sanadka').innerText = hijriYear
+    }
+    
+    
+    //Function that gives each month it's day
+    changeDaysInterval = setInterval(changeDays, 1000)
+    function changeDays(){
+    title = document.querySelector('#h3').innerText
+    if(title == 'Gregorian to Hijri Converter'){
+    month = document.getElementById('month')
+    selectedMonth = month.options[month.selectedIndex]
+    if(selectedMonth.text == 'February'){
+    document.getElementsByClassName('day')[29].style = "visibility: hidden"
+    document.getElementsByClassName('day')[30].style = "visibility: hidden"
+    }
+    else if(selectedMonth.text == 'April'){
+    document.getElementsByClassName('day')[30].style = "visibility: hidden"
+    }
+    else if(selectedMonth.text == 'Jun'){
+    document.querySelector('.day31').style = "visibility: hidden"
+    }
+    else if(selectedMonth.text == 'September'){
+    document.getElementsByClassName('day')[30].style = "visibility: hidden"
+    }
+    else if(selectedMonth.text == 'November'){
+    document.getElementsByClassName('day')[30].style = "visibility: hidden"
+    }
+    else{
+    document.getElementsByClassName('day')[29].style = "visibility: visible"
+    document.getElementsByClassName('day')[30].style = "visibility: visible"
+    }
+    }
+    else{
+    document.getElementsByClassName('day')[30].style = "visibility: hidden"
+    }
+    }
+    
+    
+    //function that change the way user can select a Date to convert.
+    function changeDateSelection(){
+    dateIndex = document.getElementById('days').selectedIndex
+    miladiDate = document.getElementsByClassName('day')[dateIndex].innerText
+    monthIndex = document.getElementById('month').selectedIndex
+    miladiMonth = document.getElementsByClassName('month')[monthIndex].innerText
+    yearIndex = document.getElementById('year').selectedIndex
+    miladiYear = document.getElementsByClassName('year')[yearIndex].innerText
+    
+    clearInterval(changeDaysInterval)
+    
+    monthIndex = 0
+    for(month of hijriMonths){
+    document.getElementsByClassName('month')[monthIndex].innerHTML = month
+    monthIndex += 1
+    }
+    yearIndex = 0
+    for(year of hijriYears){
+    document.getElementsByClassName('year')[yearIndex].innerHTML = year
+    yearIndex += 1
+    }
+    
+    document.getElementById('maalinta').innerText = miladiDate
+    document.getElementById('bisha').innerText = miladiMonth
+    document.getElementById('sanadka').innerText = miladiYear
+    
+    document.getElementById('h3').innerHTML = 'Hijri to Gregorian Converter'
+    document.getElementById('switch').onclick = backDateSelection
+    }
+    
+    //function that is getting back the previous way of the selection of the Date.
+    function backDateSelection(){
+    dateIndex = document.getElementById('days').selectedIndex
+    hijriDate = document.getElementsByClassName('day')[dateIndex].innerText
+    monthIndex = document.getElementById('month').selectedIndex
+    hijriMonth = document.getElementsByClassName('month')[monthIndex].innerText
+    yearIndex = document.getElementById('year').selectedIndex
+    hijriYear = document.getElementsByClassName('year')[yearIndex].innerText
+    monthIndex = 0
+    for(month of miladiMonths){
+    document.getElementsByClassName('month')[monthIndex].innerHTML = month
+    monthIndex += 1
+    }
+    yearIndex = 0
+    for(year of miladiYears){
+    document.getElementsByClassName('year')[yearIndex].innerHTML = year
+    yearIndex += 1
+    }
+    document.getElementById('maalinta').innerText = hijriDate
+    document.getElementById('bisha').innerText = hijriMonth
+    document.getElementById('sanadka').innerText = hijriYear
+    
+    document.getElementById('h3').innerHTML = 'Gregorian to Hijri Converter'
+    document.getElementById('switch').onclick = changeDateSelection
+    }
+    
+    
+    //function that converts the Date from the User.
+    function convertDate(){
+    title = document.querySelector('#h3').innerText
+    if(title == 'Gregorian to Hijri Converter'){
+    myDate = new Date()
+    dayIndex = myDate.getDay()
+    dateIndex = document.getElementById('days').selectedIndex
+    miladiDate = document.getElementsByClassName('day')[dateIndex].innerText
+    monthIndex = document.getElementById('month').selectedIndex
+    miladiMonth = document.getElementsByClassName('month')[monthIndex].innerText
+    yearIndex = document.getElementById('year').selectedIndex
+    miladiYear = document.getElementsByClassName('year')[yearIndex].innerText
+    hijriDate = 0
+    hijriMonth = 0
+    hijriYear = 0
+    if(miladiYear == 2020){
+    if(miladiMonth == 'January' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 25){
+    hijriDate = parseInt(miladiDate) + 5
+    hijriMonth = 'Jumadu Awal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 5
+    hijriDate = totalDate - 30
+    hijriMonth = 'Jumadu Akhir'
+    }
+    }
+    else if(miladiMonth == 'February' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 24){
+    hijriDate = parseInt(miladiDate) + 6
+    hijriMonth = 'Jumadu Akhir'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 6
+    hijriDate = totalDate - 30
+    hijriMonth = 'Rajab'
+    }
+    }
+    else if(miladiMonth == 'March' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 24){
+    hijriDate = parseInt(miladiDate) + 5
+    hijriMonth = 'Rajab'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 5
+    hijriDate = totalDate - 29
+    hijriMonth = 'Shaban'
+    }
+    }
+    else if(miladiMonth == 'April' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 23){
+    hijriDate = parseInt(miladiDate) + 7
+    hijriMonth = 'Shaban'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 7
+    hijriDate = totalDate - 30
+    hijriMonth = 'Ramadaan'
+    }
+    }
+    else if(miladiMonth == 'May' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 23){
+    hijriDate = parseInt(miladiDate) + 7
+    hijriMonth = 'Ramadaan'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 7
+    hijriDate = totalDate - 30
+    hijriMonth = 'Shawal'
+    }
+    }
+    else if(miladiMonth == 'June' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 21){
+    hijriDate = parseInt(miladiDate) + 8
+    hijriMonth = 'Shawal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 8
+    hijriDate = totalDate - 29
+    hijriMonth = 'Dhul Qidah'
+    }
+    }
+    else if(miladiMonth == 'July' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 21){
+    hijriDate = parseInt(miladiDate) + 9
+    hijriMonth = 'Dhul Qidah'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 9
+    hijriDate = totalDate - 30
+    hijriMonth = 'Dhul Hijjah'
+    }
+    }
+    else if(miladiMonth == 'August' & miladiYear == 2020){
+    hijriYear = "1441h"
+    if(miladiDate <= 19){
+    hijriDate = parseInt(miladiDate) + 10
+    hijriMonth = 'Dhul Hijjah'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 10
+    hijriDate = totalDate - 29
+    hijriMonth = 'Muharram'
+    hijriYear = '1442h'
+    }
+    }
+    else if(miladiMonth == 'September' & miladiYear == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 17){
+    hijriDate = parseInt(miladiDate) + 12
+    hijriMonth = 'Muharram'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 12
+    hijriDate = totalDate - 29
+    hijriMonth = 'Safar'
+    }
+    }
+    else if(miladiMonth == 'October' & miladiYear == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 17){
+    hijriDate = parseInt(miladiDate) + 13
+    hijriMonth = 'Safar'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 13
+    hijriDate = totalDate - 30
+    hijriMonth = 'Rabi ul Awal'
+    }
+    }
+    else if(miladiMonth == 'November' & miladiYear == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 14){
+    hijriDate = parseInt(miladiDate) + 15
+    hijriMonth = 'Rabi ul Awal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 15
+    hijriDate = totalDate - 29
+    hijriMonth = 'Rabi ul Akhar'
+    }
+    }
+    else if(miladiMonth == 'December' & miladiYear == 2020){
+    hijriYear = "1442h"
+    if(miladiDate <= 17){
+    hijriDate = parseInt(miladiDate) + 15
+    hijriMonth = 'Rabi al Akhar'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 15
+    hijriDate = totalDate - 30
+    hijriMonth = 'Jumadu Awal'
+    }
+    }
+    }
+    //Starts Here 2021
+    else if(miladiMonth == 'January' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 13){
+    hijriDate = parseInt(miladiDate) + 16
+    hijriMonth = 'Jumadu Awal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 16
+    hijriDate = totalDate - 29
+    hijriMonth = 'Jumadu Akhir'
+    }
+    }
+    else if(miladiMonth == 'February' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 12){
+    hijriDate = parseInt(miladiDate) + 18
+    hijriMonth = 'Jumadu Akhir'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 18
+    hijriDate = totalDate - 30
+    hijriMonth = 'Rajab'
+    }
+    }
+    else if(miladiMonth == 'March' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 13){
+    hijriDate = parseInt(miladiDate) + 16
+    hijriMonth = 'Rajab'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 16
+    hijriDate = totalDate - 29
+    hijriMonth = 'Shaban'
+    }
+    }
+    else if(miladiMonth == 'April' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 12){
+    hijriDate = parseInt(miladiDate) + 18
+    hijriMonth = 'Shaban'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 18
+    hijriDate = totalDate - 30
+    hijriMonth = 'Ramadaan'
+    }
+    }
+    else if(miladiMonth == 'May' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 18){
+    hijriDate = parseInt(miladiDate) + 18
+    hijriMonth = 'Ramadaan'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 18
+    hijriDate = totalDate - 30
+    hijriMonth = 'Shawal'
+    }
+    }
+    else if(miladiMonth == 'June' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 10){
+    hijriDate = parseInt(miladiDate) + 19
+    hijriMonth = 'Shawal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 19
+    hijriDate = totalDate - 29
+    hijriMonth = 'Dhul Qidah'
+    }
+    }
+    else if(miladiMonth == 'July' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 10){
+    hijriDate = parseInt(miladiDate) + 20
+    hijriMonth = 'Dhul Qidah'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 20
+    hijriDate = totalDate - 30
+    hijriMonth = 'Dhul Hijjah'
+    }
+    }
+    else if(miladiMonth == 'August' & miladiYear == 2021){
+    hijriYear = "1442h"
+    if(miladiDate <= 8){
+    hijriDate = parseInt(miladiDate) + 21
+    hijriMonth = 'Dhul Hijjah'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 21
+    hijriDate = totalDate - 29
+    hijriMonth = 'Muharram'
+    hijriYear = '1443h'
+    }
+    }
+    else if(miladiMonth == 'September' & miladiYear == 2021){
+    hijriYear = "1443h"
+    if(miladiDate <= 7){
+    hijriDate = parseInt(miladiDate) + 23
+    hijriMonth = 'Muharram'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 23
+    hijriDate = totalDate - 30
+    hijriMonth = 'Safar'
+    }
+    }
+    else if(miladiMonth == 'October' & miladiYear == 2021){
+    hijriYear = "1443h"
+    if(miladiDate <= 6){
+    hijriDate = parseInt(miladiDate) + 23
+    hijriMonth = 'Safar'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 23
+    hijriDate = totalDate - 29
+    hijriMonth = 'Rabi ul Awal'
+    }
+    }
+    else if(miladiMonth == 'November' & miladiYear == 2021){
+    hijriYear = "1443h"
+    if(miladiDate <= 5){
+    hijriDate = parseInt(miladiDate) + 25
+    hijriMonth = 'Rabi ul Awal'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 25
+    hijriDate = totalDate - 30
+    hijriMonth = 'Rabi ul Akhar'
+    }
+    }
+    else if(miladiMonth == 'December' & miladiYear == 2021){
+    hijriYear = "1443h"
+    if(miladiDate <= 3){
+    hijriDate = parseInt(miladiDate) + 26
+    hijriMonth = 'Rabi al Akhar'
+    }
+    else{
+    totalDate = parseInt(miladiDate) + 26
+    hijriDate = totalDate - 29
+    hijriMonth = 'Jumadu Awal'
+    }
+    }
+    else{
+    dateIndex = document.getElementById('days').selectedIndex
+    monthIndex = document.getElementById('month').selectedIndex
+    yearIndex = document.getElementById('year').selectedIndex
+    hijriDate = miladiDate
+    hijriMonth = hijriMonths[monthIndex]
+    hijriYear = hijriYears[yearIndex]
+    }
+    
+    document.getElementById('maalinta').innerHTML = hijriDate
+    document.getElementById('bisha').innerText = hijriMonth
+    document.getElementById('sanadka').innerText = hijriYear
+    }
+    else{
+    myDate = new Date()
+    today = myDate.getDay()
+    date = myDate.getDate()
+    month = myDate.getMonth()
+    year = myDate.getFullYear()
+    document.querySelector('.converted-date').innerHTML = date+' - '+miladiMonths[month]+' - '+year
+    }
+    }
+    </script>
+    <title>DateConvert</title>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header-container">
+            <h3 id="h3">Gregorian to Hijri Converter</h3>
+            <button id="switch" onclick="changeDateSelection()">
+                <img src="switchIco2.png" alt="icon" id="switchImage">
+                switch
+            </button>
+        </header>
+        <hr>
+        <div style="text-align: center; font-size: 20px;">Select a date to  convert</div> 
+        <br>
+        <div class="select-container">
+            <select name="" id="days">
+                <option value="1" class="day">1</option>
+                <option value="2" class="day">2</option>
+                <option value="3" class="day">3</option>
+                <option value="4" class="day">4</option>
+                <option value="5" class="day">5</option>
+                <option value="6" class="day">6</option>
+                <option value="7" class="day">7</option>
+                <option value="8" class="day">8</option>
+                <option value="9" class="day">9</option>
+                <option value="10" class="day">10</option>
+                <option value="11" class="day">11</option>
+                <option value="12" class="day">12</option>
+                <option value="13" class="day">13</option>
+                <option value="14" class="day">14</option>
+                <option value="15" class="day">15</option>
+                <option value="16" class="day">16</option>
+                <option value="17" class="day">17</option>
+                <option value="18" class="day">18</option>
+                <option value="19" class="day">19</option>
+                <option value="20" class="day">20</option>
+                <option value="21" class="day">21</option>
+                <option value="22" class="day">22</option>
+                <option value="23" class="day">23</option>
+                <option value="24" class="day">24</option>
+                <option value="25" class="day">25</option>
+                <option value="26" class="day">26</option>
+                <option value="27" class="day">27</option>
+                <option value="28" class="day">28</option>
+                <option value="29" class="day">29</option>
+                <option value="30" class="day">30</option>
+                <option value="31" class="day">31</option>
+            </select>
+            <select name="" id="month">
+                <option value="1" class="month">January</option>
+                <option value="2" class="month">February</option>
+                <option value="3" class="month">March</option>
+                <option value="4" class="month">April</option>
+                <option value="5" class="month">May</option>
+                <option value="6" class="month">June</option>
+                <option value="7" class="month">July</option>
+                <option value="8" class="month">August</option>
+                <option value="9" class="month">September</option>
+                <option value="10" class="month">October</option>
+                <option value="11" class="month">November</option>
+                <option value="12" class="month">December</option>
+            </select>
+            <select name="" id="year">
+                <option value="2010" class="year">2010</option>
+                <option value="2011" class="year">2011</option>
+                <option value="2012" class="year">2012</option>
+                <option value="2013" class="year">2013</option>
+                <option value="2014" class="year">2014</option>
+                <option value="2015" class="year">2015</option>
+                <option value="2016" class="year">2016</option>
+                <option value="2017" class="year">2017</option>
+                <option value="2018" class="year">2018</option>
+                <option value="2019" class="year">2019</option>
+                <option value="2020" class="year">2020</option>
+                <option value="2021" class="year">2021</option>
+
+            </select>
+        </div>
+
+        <div class="converted-date">
+            <span id="maalinta"> </span>
+            <span id="bisha"> </span>
+            <span id="sanadka"> </span>
+        </div>
+        
+        <button id="convert" onclick="convertDate()">CONVERT</button>
+        <p style="margin-left: 20px;">There is a small probability of one day error!</p>
+    </div>
+    <center><footer>© Copyright Isteli Nur<br/> All Rights Reserved 2021.</footer></center>
+    <hr>
+    <div>
+	<a href="index.html" class="btn">Go Back To Home Page</a>
+</div>
+    
+</body>
+</html>
