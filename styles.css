@@ -250,13 +250,13 @@ transform: scale(1.2);
 }
 .item-4{
     grid-column: 3/5;
-    grid-row: 5/9;
+    grid-row: 1/5;
 
 }
 
 .item-5{
-    grid-column: 5/7;
-    grid-row: 5/5;
+    grid-column: 1/7;
+    grid-row: 1/5;
 }
 
 
