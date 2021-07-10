@@ -259,8 +259,8 @@ transform: scale(1.2);
     grid-row: 1/15;
 }
 .item-6{
-    grid-column: 1/5;
-    grid-row: 1/15;
+    grid-column: 1/15;
+    grid-row: 1/7;
 }
 
 
