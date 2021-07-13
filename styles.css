@@ -532,8 +532,8 @@ input:focus, #occupation:focus{
     }
 
 .item-6{
-    grid-column: 5/7;
-    grid-row: 1/9;
+    grid-column: 1/7;
+    grid-row: 7/11;
 }
 }
 
