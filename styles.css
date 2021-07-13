@@ -529,10 +529,7 @@ input:focus, #occupation:focus{
         grid-column: 1/7;
         grid-row: 7/11;
     }
-.item-6{
-        grid-column: 1/7;
-        grid-row: 1/15;
-    }
+
     
 }
 
